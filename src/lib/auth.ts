@@ -30,4 +30,11 @@ export const logout=()=>{
     
 }
 
+export const sendEmail=async (email:string | null)=>{
+    const res=await axios.post(`${import.meta.env.VITE_HOST_URL}/electron/forgotPassword`,{
+        email:email
+    })
+    return res.data
+}
+
 

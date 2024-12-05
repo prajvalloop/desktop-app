@@ -59,7 +59,7 @@ const ControlLayer = ({onLogout,user,children,className}: Props) => {
       <div className='flex-1 h-0 overflow-auto'>{children}</div>
         <div className='p-5 flex w-full'>
           <div className='flex items-center gap-x-2'>
-            <img src="/opal-logo.svg" alt="app logo" />
+            <img src="./opal-logo.svg" alt="app logo" />
             <p className='text-white text-2xl'>Opal</p>
           </div>
         </div>

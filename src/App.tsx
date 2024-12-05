@@ -10,6 +10,8 @@ import AuthButton from './components/global/AuthButton'
 import Widget from './components/global/Widget'
 import { useEffect, useState } from 'react'
 import { getUserProfile, login, logout } from './lib/auth'
+import { HashRouter, Route, Routes } from 'react-router-dom'; // Import React Router
+import ForgotPassword from './components/global/ForgotPassword'
 
 const client=new QueryClient()
 function App() {
@@ -78,8 +80,9 @@ function App() {
       <ControlLayer onLogout={handleLogout} user={user}>
         <AuthButton user={user} onLogin={handleLogin} loading={loading} />
         <Widget profile={user}/>
+       
       </ControlLayer>
-      <Toaster/>
+      
     </QueryClientProvider>
   )
 }

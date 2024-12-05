@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input"
 import { Lock, LogIn } from "lucide-react"
 import { useState } from "react"
 import { Loader } from "../Loader"
+import { Link } from "react-router-dom"
 
 
 
@@ -46,10 +47,11 @@ const AuthButton = ({user,onLogin,loading}:Props) => {
         onLogin(email,password)
        
     }
+    
     if (loading) return <Loader/>
     if(user) return <></>
     return (
-        <div className="flex flex-col items-center gap-y-2">
+        <div className="flex flex-col items-center  gap-y-2">
             <div className='flex gap-x-5 justify-center items-center'>
             <LogIn
                 fill="#575655"
@@ -70,8 +72,10 @@ const AuthButton = ({user,onLogin,loading}:Props) => {
 
            
            
-            <Button variant={'outline'}  onClick={handleLoginClick}>Login</Button>
+            <Button  variant={'outline'}  onClick={handleLoginClick}>Login</Button>
+            <Link className="text-gray-300 text-sm" to="/forgot-password">Forgot password?</Link>
            
+            
             
             
         </div>
