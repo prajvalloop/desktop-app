@@ -25,7 +25,6 @@ function createWindow() {
     movable: true,
     icon: path.join(process.env.VITE_PUBLIC, "electron-vite.svg"),
     webPreferences: {
-      nodeIntegration: true,
       // contextIsolation:true,
       devTools: true,
       preload: path.join(__dirname, "preload.mjs")

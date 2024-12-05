@@ -1,3 +1,5 @@
+import { Button } from '@/components/ui/button'
+import { logout } from '@/lib/auth'
 import { cn, onCloseApp } from '@/lib/utils'
 import { UserButton } from '@clerk/clerk-react'
 import { X } from 'lucide-react'
@@ -5,12 +7,39 @@ import { X } from 'lucide-react'
 import React, { useState } from 'react'
 
 type Props = {
+  user:{
+    status:number
+    user:({
+        subscription:{
+            plan:'PRO' | 'FREE'
+        } | null
+        studio:{
+            id:string
+            screen:string | null
+            mic:string | null
+            preset : 'HD' | 'SD'
+            camera:string | null
+            userId: string | null
+        } | null
+    }&{
+        id:string
+        email:string
+        firstname:string | null
+        lastname:string | null
+        createdAt:Date
+        clerkid:string
+    } | null)
+} | null,
+  onLogout:()=>void
   children:React.ReactNode,
   className?:string
 }
 
-const ControlLayer = ({children,className}: Props) => {
+const ControlLayer = ({onLogout,user,children,className}: Props) => {
   const [isVisibled,setIsVisible]=useState<boolean>(false)
+  const handleLogout=()=>{
+    onLogout()
+  }
   window.ipcRenderer.on('hide-plugin',(event,payload)=>{
     console.log(event)
     setIsVisible(payload.state)
@@ -20,7 +49,8 @@ const ControlLayer = ({children,className}: Props) => {
       <div className='flex justify-between items-center p-5 draggable'>
         <span className='non-draggable' >
           {/* {wip} */}
-          <UserButton/>
+          {user ? (<Button onClick={handleLogout} variant={'outline'}>Logout</Button>):(<></>)}
+          {/* <UserButton/> */}
         </span>
       
       <X size={40} className='z-20 text-gray-400  hover:text-white cursor-pointer' onClick={onCloseApp} />
