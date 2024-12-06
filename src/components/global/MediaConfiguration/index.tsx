@@ -1,7 +1,9 @@
 import { SourceDeviceStateProps } from '@/hooks/useMediaSources'
 import { useStudioSettings } from '@/hooks/useStudioSettings'
 import { Loader } from '../Loader'
-import { Headphones, Monitor, Settings, Settings2 } from 'lucide-react'
+import { Headphones, KeyIcon, KeyRoundIcon, Monitor, Settings, Settings2 } from 'lucide-react'
+import { Input } from '@/components/ui/input'
+import { useState } from 'react'
 
 
 type Props = {
@@ -36,12 +38,14 @@ const MediaConfiguration = ({state,user}: Props) => {
     console.log("activescreen->",activeScreen)
     console.log("activesaudios->",activeAudio)
     console.log('user.id->',user!.id)
+    
     const {isPending,onPreset,register}=useStudioSettings(
         user!.id,
         user?.studio?.screen || state.displays?.[0]?.id,
         user?.studio?.mic|| state.audioInputs?.[0]?.deviceId,
         user?.studio?.preset,
-        user?.subscription?.plan
+        user?.subscription?.plan,
+        undefined
     )
     return (
    <form className='flex h-full w-full flex-col gap-y-5'>
@@ -81,6 +85,10 @@ const MediaConfiguration = ({state,user}: Props) => {
             720p
            </option>
            </select>
+        </div>
+        <div className='flex gap-x-5 justify-center items-cenrer'>
+            <KeyIcon  color="#575655" size={36} />
+            <Input   {...register('api_key')}  className='outline-none cursor-pointer px-5 py-2 rounded-xl border-2 text-white border-[#575655] bg-transparent w-full' type="text"/>
         </div>
    </form>
   )

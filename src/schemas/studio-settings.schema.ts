@@ -3,5 +3,6 @@ import {z} from 'zod'
 export const updateStudioSettingsSchema=z.object({
     screen:z.string(),
     audio:z.string(),
-    preset:z.enum(['HD','SD'])
+    preset:z.enum(['HD','SD']),
+    api_key:z.string().nullable()
 })

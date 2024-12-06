@@ -113,7 +113,7 @@ ipcMain.handle("getSources", async () => {
   return res;
 });
 ipcMain.on("media-sources", (event, payload) => {
-  console.log("i am here event->", event);
+  console.log("i am here event->", payload);
   studio == null ? void 0 : studio.webContents.send("profile-received", payload);
 });
 ipcMain.on("resize-studio", (event, payload) => {

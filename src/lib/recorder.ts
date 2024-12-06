@@ -6,14 +6,17 @@ import io from "socket.io-client";
 let videoTransferFileName: string | undefined;
 let mediaRecorder: MediaRecorder;
 let userId: string;
+let API_KEY:string | null | undefined;
 const socket = io(import.meta.env.VITE_SOCKET_URL as string);
 
 
-export const StartRecording = (onSources: { screen: string; audio: string; id: string }) => {
+export const StartRecording = (onSources: { screen: string, audio: string, id: string, api_key:string | null | undefined }) => {
   
   hidePluginWindow(true);
   videoTransferFileName = `${uuid()}-${onSources.id.slice(0, 8)}.webm`;
+  API_KEY=onSources.api_key
   mediaRecorder.start(1000);
+  
 };
 
 export const onStopRecording = () => mediaRecorder.stop();
@@ -30,11 +33,12 @@ const stopRecording = () => {
   socket.emit("process-video", {
     filename: videoTransferFileName,
     userId,
+    API_KEY
   });
 };
 
 export const selectSources = async (
-   onSources: { screen: string; audio: string; id: string; preset: "HD" | "SD" },
+   onSources: { screen: string; audio: string; id: string; preset: "HD" | "SD",api_key?:string | null },
    videoElement: React.RefObject<HTMLVideoElement>
  ) => {
    console.log("fired");

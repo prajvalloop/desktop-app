@@ -149,7 +149,7 @@ ipcMain.handle("getSources",async()=>{
   return res
 })
 ipcMain.on('media-sources',(event,payload)=>{
-  console.log("i am here event->",event)
+  console.log("i am here event->",payload)
   studio?.webContents.send("profile-received",payload)
 })
 

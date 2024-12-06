@@ -5,12 +5,13 @@ import { useMutation } from "@tanstack/react-query"
 import { updateStudioSettings } from "@/lib/utils"
 import { toast } from "sonner"
 
-export const useStudioSettings=(id:string,screen?:string | null,audio?:string | null,preset?:'HD'| 'SD',plan?:'PRO' | 'FREE')=>{
+export const useStudioSettings=(id:string,screen?:string | null,audio?:string | null,preset?:'HD'| 'SD',plan?:'PRO' | 'FREE',api_key?:string)=>{
     const [onPreset,setPreset]=useState<'HD' | 'SD' | undefined> ()
     const {register,watch}=useZodForm(updateStudioSettingsSchema,{
         screen:screen!,
         audio:audio!,
-        preset:preset!
+        preset:preset!,
+        api_key:api_key
     })
     const {mutate,isPending}=useMutation({
         mutationKey:["update-studio"],
@@ -35,7 +36,8 @@ useEffect(()=>{
             id,
             audio,
             preset,
-            plan
+            plan,
+            api_key
         })
     }
 },[audio,screen])
@@ -56,7 +58,8 @@ useEffect(()=>{
         id,
         audio:values.audio,
         preset:values.preset,
-        plan
+        plan,
+        api_key:values.api_key
         })
     })
     return ()=>subscribe.unsubscribe()

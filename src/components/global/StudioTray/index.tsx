@@ -16,7 +16,8 @@ const StudioTray = () => {
     id:string
     audio:string
     preset:'HD'| 'SD',
-    plan:'PRO'|'FREE'
+    plan:'PRO'|'FREE',
+    api_key:string | null | undefined
   } | undefined>(undefined)
   const videoElement=useRef<HTMLVideoElement | null> (null)
   window.ipcRenderer.on("profile-received",(event,payload)=>{
