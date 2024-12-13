@@ -13,11 +13,10 @@ let floatingWebCam;
 function createWindow() {
   win = new BrowserWindow({
     // autoHideMenuBar: true,
-    width: 600,
-    height: 600,
-    minHeight: 600,
-    minWidth: 300,
-    // titleBarStyle: 'hidden',
+    width: 400,
+    height: 400,
+    frame: false,
+    titleBarStyle: "hidden",
     // frame: false,  // Changed to false to allow custom window controls
     // transparent: true,
     alwaysOnTop: true,
@@ -33,8 +32,8 @@ function createWindow() {
   studio = new BrowserWindow({
     width: 400,
     height: 500,
-    // frame:true,
-    // transparent:true,
+    frame: false,
+    transparent: true,
     alwaysOnTop: true,
     backgroundColor: "#00000000",
     // Transparent but interactive in opaque areas
@@ -48,10 +47,10 @@ function createWindow() {
     }
   });
   floatingWebCam = new BrowserWindow({
-    width: 400,
+    width: 200,
     height: 200,
-    // frame:false,
-    // transparent:true,
+    frame: false,
+    transparent: true,
     alwaysOnTop: true,
     // focusable:false,
     icon: path.join(process.env.VITE_PUBLIC, "electron-vite.svg"),
@@ -65,10 +64,7 @@ function createWindow() {
   win.setVisibleOnAllWorkspaces(true, { visibleOnFullScreen: true });
   win.setAlwaysOnTop(true, "screen-saver", 1);
   studio.setVisibleOnAllWorkspaces(true, { visibleOnFullScreen: true });
-  win.webContents.openDevTools();
-  studio.setAlwaysOnTop(true, "screen-saver", 1);
   floatingWebCam.setVisibleOnAllWorkspaces(true, { visibleOnFullScreen: true });
-  floatingWebCam.setAlwaysOnTop(true, "screen-saver", 1);
   win.webContents.on("did-finish-load", () => {
     win == null ? void 0 : win.webContents.send("main-process-message", (/* @__PURE__ */ new Date()).toLocaleString());
   });

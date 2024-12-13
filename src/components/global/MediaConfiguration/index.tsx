@@ -86,9 +86,9 @@ const MediaConfiguration = ({state,user}: Props) => {
            </option>
            </select>
         </div>
-        <div className='flex gap-x-5 justify-center items-cenrer'>
-            <KeyIcon  color="#575655" size={36} />
-            <Input   {...register('api_key')}  className='outline-none cursor-pointer px-5 py-2 rounded-xl border-2 text-white border-[#575655] bg-transparent w-full' type="text"/>
+        <div title="Enter your API key below to generate the title, description, and transcript" className='flex gap-x-5 justify-center items-center '>
+            <KeyIcon   color="#575655" size={36} />
+            <Input {...register('api_key')}  className='outline-none cursor-pointer px-5 py-2 rounded-xl border-2 text-white border-[#575655] bg-transparent w-full' type="text"/>
         </div>
    </form>
   )

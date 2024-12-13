@@ -29,11 +29,11 @@ let floatingWebCam:BrowserWindow | null
 function createWindow() {
   win = new BrowserWindow({
     // autoHideMenuBar: true,
-    width: 600,
-    height: 600,
-    minHeight:600,
-    minWidth:300,
-    // titleBarStyle: 'hidden',
+    width: 400,
+    height: 400,
+    
+    frame:false,
+    titleBarStyle: 'hidden',
    
     // frame: false,  // Changed to false to allow custom window controls
     // transparent: true,
@@ -53,8 +53,8 @@ function createWindow() {
     width:400,
     height:500,
    
-    // frame:true,
-    // transparent:true,
+    frame:false,
+    transparent:true,
     alwaysOnTop:true,
     backgroundColor: "#00000000", // Transparent but interactive in opaque areas
     // focusable:false,
@@ -69,11 +69,11 @@ function createWindow() {
 
   })
   floatingWebCam=new BrowserWindow({
-    width:400,
+    width:200,
     height:200,
-   
-    // frame:false,
-    // transparent:true,
+    
+    frame:false,
+    transparent:true,
     alwaysOnTop:true,
     // focusable:false,
     icon: path.join(process.env.VITE_PUBLIC, 'electron-vite.svg'),
@@ -91,10 +91,10 @@ function createWindow() {
   // studio.setIgnoreMouseEvents(false);
   // studio.setIgnoreMouseEvents(true, { forward: true }); // Click-through for transparent areas
 
-  win.webContents.openDevTools()
-  studio.setAlwaysOnTop(true,'screen-saver',1)
+  // win.webContents.openDevTools()
+  // studio.setAlwaysOnTop(true,'screen-saver',1)
   floatingWebCam.setVisibleOnAllWorkspaces(true,{visibleOnFullScreen:true})
-  floatingWebCam.setAlwaysOnTop(true,'screen-saver',1)
+  // floatingWebCam.setAlwaysOnTop(true,'screen-saver',1)
   // Test active push message to Renderer-process.
   win.webContents.on('did-finish-load', () => {
     win?.webContents.send('main-process-message', (new Date).toLocaleString())

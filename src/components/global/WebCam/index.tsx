@@ -18,7 +18,7 @@ const streamWebCam=async()=>{
     streamWebCam()
 },[])
   return (
-    <video ref={camElement} className="h-screen draggable object-cover rounded-lg aspect-video border-2 relative border-white"></video>
+    <video ref={camElement} className="h-screen draggable object-cover rounded-full aspect-video border-2 relative border-white"></video>
   )
 }
 
