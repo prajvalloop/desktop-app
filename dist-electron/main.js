@@ -15,6 +15,8 @@ function createWindow() {
     // autoHideMenuBar: true,
     width: 400,
     height: 400,
+    x: 100,
+    y: 100,
     frame: false,
     titleBarStyle: "hidden",
     // frame: false,  // Changed to false to allow custom window controls
@@ -32,6 +34,8 @@ function createWindow() {
   studio = new BrowserWindow({
     width: 400,
     height: 500,
+    x: 300,
+    y: 300,
     frame: false,
     transparent: true,
     alwaysOnTop: true,
@@ -49,6 +53,8 @@ function createWindow() {
   floatingWebCam = new BrowserWindow({
     width: 200,
     height: 200,
+    x: 500,
+    y: 500,
     frame: false,
     transparent: true,
     alwaysOnTop: true,
@@ -64,7 +70,9 @@ function createWindow() {
   win.setVisibleOnAllWorkspaces(true, { visibleOnFullScreen: true });
   win.setAlwaysOnTop(true, "screen-saver", 1);
   studio.setVisibleOnAllWorkspaces(true, { visibleOnFullScreen: true });
+  studio.setAlwaysOnTop(true, "screen-saver", 1);
   floatingWebCam.setVisibleOnAllWorkspaces(true, { visibleOnFullScreen: true });
+  floatingWebCam.setAlwaysOnTop(true, "screen-saver", 1);
   win.webContents.on("did-finish-load", () => {
     win == null ? void 0 : win.webContents.send("main-process-message", (/* @__PURE__ */ new Date()).toLocaleString());
   });

@@ -31,7 +31,8 @@ function createWindow() {
     // autoHideMenuBar: true,
     width: 400,
     height: 400,
-    
+    x:100,
+    y:100,
     frame:false,
     titleBarStyle: 'hidden',
    
@@ -52,7 +53,8 @@ function createWindow() {
   studio=new BrowserWindow({
     width:400,
     height:500,
-   
+    x:300,
+    y:300,
     frame:false,
     transparent:true,
     alwaysOnTop:true,
@@ -71,7 +73,8 @@ function createWindow() {
   floatingWebCam=new BrowserWindow({
     width:200,
     height:200,
-    
+    x:500,
+    y:500,
     frame:false,
     transparent:true,
     alwaysOnTop:true,
@@ -92,9 +95,9 @@ function createWindow() {
   // studio.setIgnoreMouseEvents(true, { forward: true }); // Click-through for transparent areas
 
   // win.webContents.openDevTools()
-  // studio.setAlwaysOnTop(true,'screen-saver',1)
+  studio.setAlwaysOnTop(true,'screen-saver',1)
   floatingWebCam.setVisibleOnAllWorkspaces(true,{visibleOnFullScreen:true})
-  // floatingWebCam.setAlwaysOnTop(true,'screen-saver',1)
+  floatingWebCam.setAlwaysOnTop(true,'screen-saver',1)
   // Test active push message to Renderer-process.
   win.webContents.on('did-finish-load', () => {
     win?.webContents.send('main-process-message', (new Date).toLocaleString())
