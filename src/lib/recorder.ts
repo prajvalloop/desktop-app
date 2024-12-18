@@ -1,5 +1,5 @@
 import React from "react";
-import { hidePluginWindow } from "./utils";
+import { hidePluginWindow, onCloseApp } from "./utils";
 import { v4 as uuid } from "uuid";
 import io from "socket.io-client";
 
@@ -26,6 +26,8 @@ export const onDataAvaliable = (e: BlobEvent) => {
     chunks: e.data,
     filename: videoTransferFileName,
   });
+
+  
 };
 
 const stopRecording = () => {
@@ -35,6 +37,7 @@ const stopRecording = () => {
     userId,
     API_KEY
   });
+  onCloseApp()
 };
 
 export const selectSources = async (
